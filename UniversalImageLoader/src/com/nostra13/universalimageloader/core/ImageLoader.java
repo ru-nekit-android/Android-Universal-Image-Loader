@@ -288,13 +288,14 @@ public class ImageLoader {
 	 * 2) Get <b>maxWidth</b> and <b>maxHeight</b>. If both of them are not set then go to step #3.<br />
 	 * 3) Get device screen dimensions.
 	 */
+
 	private ImageSize getImageSizeScaleTo(ImageView imageView) {
 		LayoutParams params = imageView.getLayoutParams();
-		int width = params.width; // Get layout width parameter
+		int width =  params == null ? 0 : params.width; // Get layout width parameter
 		if (width <= 0) width = getFieldValue(imageView, "mMaxWidth"); // Check maxWidth parameter
 		if (width <= 0) width = configuration.maxImageWidthForMemoryCache;
 
-		int height = params.height; // Get layout height parameter
+		int height =   params == null ? 0 : params.height; // Get layout height parameter
 		if (height <= 0) height = getFieldValue(imageView, "mMaxHeight"); // Check maxHeight parameter
 		if (height <= 0) height = configuration.maxImageHeightForMemoryCache;
 
